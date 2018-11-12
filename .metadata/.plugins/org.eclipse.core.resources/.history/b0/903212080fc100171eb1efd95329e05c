@@ -1,0 +1,33 @@
+//============================================================================
+// Name        : test'.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+using namespace std;
+ class A{
+ public:
+	int a;
+	A(){}
+	A(const A& a){
+		cout<<"copy"<<endl;
+	}
+
+
+ };
+
+ A func(A x){
+
+	 A y;
+	 return y;
+ }
+
+int main() {
+    A a;
+	A obj = func(a);
+	obj.a =1;
+
+}

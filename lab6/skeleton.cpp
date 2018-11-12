@@ -1,0 +1,188 @@
+#include <set>
+#include <algorithm>
+#include <string>
+#include <iostream>
+#include <list>
+#include <map>
+using namespace std;
+
+void printSetUsingIterator(const set<string>& s) {
+   // TODO: Print a set of string using iterator
+	set<string>::const_iterator it = s.begin();
+	cout<<"{";
+	while (it!=s.end()){
+		cout<<*it;
+		++it;
+		if(it!=s.end()){
+			cout<<",";
+		}
+		else{
+			cout<<"}"<<endl;
+		}
+	}
+}
+
+void printListUsingIterator(const list<string>& s) {
+   // TODO: Print a list of string using iterator
+	list<string>::const_iterator it = s.begin();
+		cout<<"{";
+		while (it!=s.end()){
+			cout<<*it;
+			++it;
+			if(it!=s.end()){
+				cout<<",";
+			}
+			else{
+				cout<<"}"<<endl;
+			}
+		}
+}
+
+void printMapUsingIterator(const map<string,int>& s) {
+   // TODO: Print a map using iterator
+	 map<string,int>::const_iterator it = s.begin();
+
+	while (it!= s.end()){
+		cout<<"key: "<<it->first<<"  Value: "<<it->second<<endl;
+		it++;
+	}
+}
+
+//TODO: You may need to define a comparator function yourself here (for the sorting task)
+bool compare_length(const string& first, const string& second){
+	return(first.length()<=second.length());
+}
+
+int main()
+{
+    cout << endl;
+    cout << "************************** Part1: set **************************";
+    cout << endl;
+
+    set<string> Fictions, Movies;
+    Fictions.insert("The Time Machine");
+    Fictions.insert("The Catcher in the Rye");
+    Fictions.insert("The Lord of the Rings");
+
+    Movies.insert("The Shawshank Redemption");
+    Movies.insert("City of God");
+    Movies.insert("The Lord of the Rings");
+    Movies.insert("Star Wars");
+
+    cout << "Set Fictions Content =" ;
+    printSetUsingIterator(Fictions);
+    cout << "Set Movies Content =" ;
+    printSetUsingIterator(Movies);
+
+    
+    // Part 1 TODO: Complete the set operations: union, intersection and difference.
+    set<string> unionSet, interSet, diffSet;
+
+    // ADD YOUR CODE HERE
+    unionSet = Fictions;
+    set<string>::iterator it = Movies.begin();
+    for(;it!= Movies.end();it++){
+    	unionSet.insert(*it);
+    }
+
+    cout << "Fictions union Movies Content = ";
+    printSetUsingIterator(unionSet);
+
+    // ADD YOUR CODE HERE
+    interSet = Fictions;
+    it = Fictions.begin();
+    for(;it!=Fictions.end();it++){
+         if(Movies.find(*it)==Movies.end()){
+
+        	interSet.erase(*it);
+         }
+    }
+
+    cout << "Fictions intersect Movies Content = ";
+    printSetUsingIterator(interSet);
+
+    // ADD YOUR CODE HERE
+    diffSet = Fictions;
+    it = Movies.begin();
+    for(;it!=Movies.end();it++){
+    	if(Fictions.find(*it)!=Fictions.end()){
+    		diffSet.erase(*it);
+    	}
+    }
+
+    cout << "Fictions difference Movies Content = ";
+    printSetUsingIterator(diffSet);
+
+    
+    cout << endl;
+    cout << "************************** Part2: list **************************";
+    cout << endl;
+
+    list<string> listR ;
+    // Part 2 TODO: Merge Fictions and Movies to listR
+    // ADD YOUR CODE HERE
+    it = Fictions.begin();
+    for(;it!=Fictions.end();++it){
+    	listR.push_back(*it);
+    }
+    it = Movies.begin();
+    for(;it!=Movies.end();++it){
+    	listR.push_back(*it);
+    }
+
+    cout << "listR Content = ";
+    printListUsingIterator(listR);
+        
+    // Part 2 TODO: 
+    //Add a new string "Forest Gump" at the end of the list
+    //Add a new string "The Dark Knight" at the head of the list
+    // ADD YOUR CODE HERE
+    listR.push_back("Forest Gump");
+    listR.push_front("The Dark Knight");
+
+    cout << "New R Content = ";
+    printListUsingIterator(listR);
+
+    // Sort listR by movie name length ascendingly
+    // ADD YOUR CODE HERE
+    listR.sort(compare_length);
+
+
+    cout << "Sorted R Content = ";
+    printListUsingIterator(listR);
+
+
+
+    cout << endl;
+    cout << "************************** Part3: map **************************";
+    cout << endl;
+
+    map<string,int> mapMovie;
+    mapMovie.insert(make_pair("The Shawshank Redemption", 1994));
+    mapMovie.insert(make_pair("City of God", 2002));
+    mapMovie.insert(make_pair("The Lord of the Rings", 2002));
+    mapMovie.insert(make_pair("Star Wars", 1977));
+    mapMovie.insert(make_pair("Forest Gump", 1994));
+    cout << "mapMovie Content: "<<endl;
+    printMapUsingIterator(mapMovie);
+
+    //Part3 TODO : Compelete element search and deletion in mapMovie here
+    // search "Star Wars" in map
+    // ADD YOUR CODE HERE
+    map<string,int>::iterator mi = mapMovie.find("Star Wars");
+
+    if(mi!=mapMovie.end())
+    cout<<"Key found, the value is "<<mi->second<<endl;
+
+    // delete "City of God" in map
+    // ADD YOUR CODE HERE
+    mi = mapMovie.find("City of God");
+    if(mi != mapMovie.end()){
+    	mapMovie.erase(mi);
+    }
+
+
+    cout<<"mapMovie Content after deletion: "<<endl;
+    printMapUsingIterator(mapMovie);
+    return 0;
+}

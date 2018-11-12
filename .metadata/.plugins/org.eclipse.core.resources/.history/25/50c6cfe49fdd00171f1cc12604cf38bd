@@ -1,0 +1,51 @@
+//============================================================================
+// Name        : test'.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+using namespace std;
+ class A{
+ public:
+	int a;
+	A(){}
+
+	virtual void haha()=0;
+
+
+
+
+ };
+
+ class B : public A{
+
+ public :
+
+	virtual void haha();
+
+
+ };
+
+
+  virtual void B::haha() {
+	  cout<<"ojbk"<<endl;
+  }
+
+//class C : public B{
+//
+//	 void haha(){
+//		 cout<<"haha in C"<<endl;
+//	 }
+// };
+
+
+int main() {
+
+	B b;
+	b.haha();
+
+
+}

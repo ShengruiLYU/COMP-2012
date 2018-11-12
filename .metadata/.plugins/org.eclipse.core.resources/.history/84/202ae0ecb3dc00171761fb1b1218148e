@@ -1,0 +1,47 @@
+//============================================================================
+// Name        : test'.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+using namespace std;
+ class A{
+ public:
+	int a;
+	A(){a=100;}
+
+	virtual void as(){}
+
+
+
+ };
+
+ class B : protected A{
+
+ public :
+	 int a;
+
+  void haha(){
+
+	  as();
+	  cout<<a;}
+ };
+
+
+
+
+int main() {
+
+	A obja;
+
+	B* bp = dynamic_cast<B*>(&obja);
+
+	if(bp == NULL){
+		cout<<"gg";
+	}
+
+
+}

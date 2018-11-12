@@ -1,0 +1,28 @@
+//============================================================================
+// Name        : test'.cpp
+// Author      : 
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+//============================================================================
+
+#include <iostream>
+using namespace std;
+ class A{
+ public:
+	int x [100];
+
+
+ };
+
+ class B : public A{
+
+ };
+
+
+int main() {
+
+	A ha;
+	A he;
+
+}
